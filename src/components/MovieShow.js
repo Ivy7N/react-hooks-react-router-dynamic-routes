@@ -1,14 +1,20 @@
-// ./src/components/MovieShow.js
-import React from "react";
+// MovieShow.js
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-function MovieShow() {
-  const params = useParams();
-  console.log(params);
+function MovieShow({ movies }) {
+  const { movieId } = useParams();
+  const movie = movies.find((m) => m.id === movieId);
+
+  if (!movie) {
+    return <div>Movie not found.</div>;
+  }
 
   return (
     <div>
-      {/**/}
-      <h3>{movies[params.movieId].title}</h3>
+      <h2>{movie.title}</h2>
+      <p>{movie.description}</p>
+      {/* Display other movie details here */}
     </div>
   );
 }
